@@ -1,3 +1,4 @@
+![image](images/Title.jpg)
 # EUDCC network node
 ![image](https://img.shields.io/badge/License-MIT-green) ![image](https://img.shields.io/badge/Python-3.10-blue)
 <!--Applets that enable verification of official european digital health certificates and emulates the issuing process and architecture for educational purposes.-->
@@ -21,6 +22,8 @@ Using the KID to identify the authority who supposedly signed the data, the app 
 There, it should find the data of the one who holds said key and fetch the public key (the number used to easily authentify everything signed by the holder). Using this key, it then cryptographically validates the certificate by matching two values: one obtained by encrypting the signature and another one by computing the hash of the payload. If they match, the certificate is valid. If *anything* fails, the certificate is invalid.
 A valid certificate has its payload taken and decoded from its CBOR format, resulting in a JSON (*techincally, it all is a JSON Web Token*) string that holds all the data the certificates needs to store and... well, certify.
 
+![image](images/App.jpg)
+
 ### Issuing
 The counterpart of the first application takes a dummy cryptographic key and acquires from the user some personal data via the frontend interface created with the Flask server. It packs the data into a JSON string, with a randomly generated ID and computed date and time, signs the payload, packs it into a COSE message to then archive as .zip, encode in base 45, prepend "HC1:" to, and present as a QR-code, essentially doing all the work of the first app in reverse to show that such a network has no active parts that are loaded with an enormous volume of requests, even for a planet-scale application.
 
@@ -33,3 +36,6 @@ Still, here's a short (quite simplified) list of steps needed to hopefully get t
 4. Replace the ```Generate\cert.key``` file with an **ECDSA (ECDH P-256) private key** you generate. When in doubt, you can use [this site](https://certificatetools.com).
 5. Replace the ```Generate\cert.pem``` and ```Check\cert.pem``` files with the corresponding public key for the above private key, so that the verification app can recognise the certificates issued by its counterpart app.
 6. Open a command line and run ```app_generate.py``` or ```app_scan.py```, depending on qhat you need. The localhost address you should access is communicated to you. Enjoy!
+
+## Anything else?
+If this information is not enough, you may want to read a more detailed description of the whole concept on the dedicated page on [my website](https://vladoleksik.github.io/projects/EUDCC.html). Thanks for your time.
