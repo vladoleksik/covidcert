@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+	<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+	<title>Error | Utopia certificate check portal</title>
+
+	</head>
+   <body style="background-image: url({{ url_for('static', filename='images/background_critical.png') }}); padding: 5px; background-size: cover; background-position: left; background-repeat: no-repeat;">
+
+     <div class="container shadow rounded-top bg-body mt-4">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+       <div class="container-fluid">
+        <a class="navbar-brand"><img class="rounded"  height="40" src="{{ url_for('static', filename='images/UU.png') }}"> | Ministry of Certificate Signing</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse align-items-right" id="navbarNav">
+         <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('how_it_works') }}">How it works</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('upload') }}">Back</a>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </nav>
+  </div>
+
+
+	<div class="container rounded-bottom shadow bg-body">
+		<main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/n_ok.png') }}" alt="" width="72">
+      <h2 class="mx-5 text-danger">This is not a Health certificate</h2>
+      <p class="lead my-0">There is no QR-Code or the QR-Code does not contain a Health certificate.</p>
+    </div>
+
+    <div class="row justify-content-md-center">
+      
+      <div class="col-sm-10 col-lg-10" >
+
+
+
+
+	<h2>More info</h2><hr/>
+         <dl class="row">
+  <dt class="col-sm-4">Error encountered at:</dt>
+  <dd class="col-sm-8">{{ data['err'] }}</dd>
+</dl>
+
+
+	<h2>Content</h2><hr/>
+         <dl class="row">
+  <dt class="col-sm-4">Content of the certificate:</dt>
+  <dd class="col-sm-8">{{ data['content'] }}</dd>
+<!-- https://youtu.be/dQw4w9WgXcQ -->
+
+</dl>
+      </div>
+    
+    <div class="col-sm-10 col-lg-10 py-4 g-4"><a href="{{ url_for('upload') }}"><button type="button" class="w-100 btn btn-danger">Try again</button></a></div>
+   </div>
+</div>
+
+  <footer class="my-5 text-white text-center text-small">
+    <p class="mb-1">&copy; 2021–2021 Utopian Union</p>
+  </footer>
+</div>
+
+
+	<script src="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js')}}"></script>
+	</body>
+</html>

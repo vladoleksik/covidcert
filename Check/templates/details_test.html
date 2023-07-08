@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+	<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+	<title>Test certificate | Utopia certificate check portal</title>
+
+	</head>
+   <body style="background-image: url({% if data['status']==0 %}{{ url_for('static', filename='images/background_critical.png') }}{% elif data['status']==1 %}{{ url_for('static', filename='images/background_utopia.png') }}{% else %}{{ url_for('static', filename='images/background_normal.png') }}{% endif %}); padding: 5px; background-size: cover; background-position: left; background-repeat: no-repeat;">
+
+     <div class="container shadow rounded-top bg-body mt-4">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+       <div class="container-fluid">
+        <a class="navbar-brand"><img class="rounded"  height="40" src="{{ url_for('static', filename='images/UU.png') }}"> | Ministry of Certificate Signing</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse align-items-right" id="navbarNav">
+         <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('how_it_works') }}">How it works</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('upload') }}">Back</a>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </nav>
+  </div>
+
+
+	<div class="container rounded-bottom shadow bg-body">
+		<main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="{% if data['status']==0 %}{{ url_for('static', filename='images/n_ok.png') }}{% elif data['status']==1 %}{{ url_for('static', filename='images/ok_Utopia.png') }}{% else %}{{ url_for('static', filename='images/ok_EU.png') }}{% endif %}" alt="" width="72">
+      {% if data['status']==0 %}
+      <h2 class="mx-5 text-danger">Invalid vaccination certificate</h2>
+      <p class="lead my-0">This certificate wasn't signed or was signed by an issuer who is not trusted.</p>
+	{% elif data['status']==1 %}
+      <h2 class="mx-5" style="color: #6f42c1;">Trusted certificate signed by Utopia</h2>
+      <p class="lead my-0">This certificate was signed by an organisation trusted by us.</p>
+	{% else %}
+      <h2 class="mx-5 text-success">Valid, EU-signed, vaccination certificate</h2>
+      <p class="lead my-0">This certificate was signed by a trusted EU state.</p>
+	{% endif %}
+    </div>
+
+    <div class="row justify-content-md-center">
+      
+      <div class="col-sm-10 col-lg-10" >
+
+
+
+
+	<h2>Cryptographic information</h2><hr/>
+         <dl class="row">
+  <dt class="col-sm-4">Certificate signed by</dt>
+  <dd class="col-sm-8">{{ data['iss'] }}</dd>
+
+  <dt class="col-sm-4">Valid from</dt>
+  <dd class="col-sm-8">{{ datetime.utcfromtimestamp(data['payload'][6]).strftime('%Y-%m-%d %H:%M:%S UTC%Z') }}</dd>
+
+  <dt class="col-sm-4">Valid to</dt>
+  <dd class="col-sm-8">{{ datetime.utcfromtimestamp(data['payload'][4]).strftime('%Y-%m-%d %H:%M:%S UTC%Z') }}</dd>
+
+</dl>
+
+
+	<h2>Holder information</h2><hr/>
+         <dl class="row">
+  <dt class="col-sm-4">Name</dt>
+  <dd class="col-sm-8">{{ data['payload'][-260][1]['nam']['fn'] }}</dd>
+
+  <dt class="col-sm-4">Surname</dt>
+  <dd class="col-sm-8">{{ data['payload'][-260][1]['nam']['gn'] }}</dd>
+
+  <dt class="col-sm-4">Date of birth</dt>
+  <dd class="col-sm-8">{{ data['payload'][-260][1]['dob'] }}</dd>
+
+</dl>
+
+
+
+        <h2>Test information</h2><hr/>
+         <dl class="row">
+  <dt class="col-sm-4">Disease targeted</dt>
+  <dd class="col-sm-8">{{ disease[data['payload'][-260][1]['t'][0]['tg']] }}</dd>
+
+  <dt class="col-sm-4">Test type</dt>
+  <dd class="col-sm-8">{{ test_type[data['payload'][-260][1]['t'][0]['tt']] }}</dd>
+
+  <dt class="col-sm-4">Test information/ID</dt>
+  <dd class="col-sm-8">{% if data['payload'][-260][1]['t'][0]['tt']=='LP6464-4' %}{{ data['payload'][-260][1]['t'][0]['nm'] }}{% else %}{{ data['payload'][-260][1]['t'][0]['ma'] }}{% endif %}</dd>
+
+  <dt class="col-sm-4">Test result</dt>
+  <dd class="col-sm-8">{{ test_res[data['payload'][-260][1]['t'][0]['tr']] }}</dd>
+
+  <dt class="col-sm-4">Test centre</dt>
+  <dd class="col-sm-8">{{ data['payload'][-260][1]['t'][0]['tc'] }}</dd>
+
+  <dt class="col-sm-4">Test date and time</dt>
+  <dd class="col-sm-8">{{ datetime.strptime(data['payload'][-260][1]['t'][0]['sc'],'%Y-%m-%dT%H:%M:%S%z').strftime('%Y-%m-%d %H:%M:%S %Z') }}</dd><hr/>
+
+  <dt class="col-sm-4">Certificate identifier</dt>
+  <dd class="col-sm-10"><h6>{{ data['payload'][-260][1]['t'][0]['ci'] }}</h6></dd>
+
+</dl>
+
+      </div>
+    </div>
+</div>
+
+  <footer class="my-5 text-white text-center text-small">
+    <p class="mb-1">&copy; 2021–2021 Utopian Union</p>
+  </footer>
+</div>
+
+
+	<script src="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js')}}"></script>
+	</body>
+</html>

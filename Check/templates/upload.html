@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+	<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+	<title>Scan | Utopia certificate check portal</title>
+
+	</head>
+   <body style="background-image: url({{ url_for('static', filename='images/bg_purple.png') }}); padding: 5px; background-position: left; background-attachment: fixed;">
+
+     <div class="container shadow rounded-top bg-body mt-4">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+       <div class="container-fluid">
+        <a class="navbar-brand"><img class="rounded"  height="40" src="{{ url_for('static', filename='images/UU.png') }}"> | Ministry of Certificate Signing</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse align-items-right" id="navbarNav">
+         <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('how_it_works') }}">How it works</a>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </nav>
+  </div>
+
+
+	<div class="container rounded-bottom shadow bg-body">
+		<main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='illustrations/QR code_Monochromatic.png') }}" alt="" width="144">
+      <h2 class="mx-5">Upload a health certificate</h2>
+      <p class="lead my-0">This way, you can view the details and check the validity of your certificate.</p>
+    </div>
+
+    <div class="row justify-content-md-center">
+      
+      <div class="col-md-7 col-lg-8" >
+         <form action="" method="POST" enctype="multipart/form-data">
+	{{ form.csrf_token }}
+          <div class="row g-3 mb-5">
+            <div class="col-sm-12 py-5">
+              <label for="{{ form.cert_file.id }}" class="form-label">{{ form.cert_file.label }}</label>
+              {{ form.cert_file(class_='form-control')|safe }}
+            </div>
+
+	{% if err or form.errors %}
+          <hr class="my-4">
+	<div class="row my-3">
+            <div class="col-lg-12">
+		<p class="text-danger">Please upload a file correctly.</p>
+	    </div>
+        </div>
+	  <hr class="my-4">
+	{% endif %}
+
+            <div class="col-sm-12">
+              <button style="background-color: #6f42c1; border:none;" class="shadow-sm w-100 btn btn-primary btn-lg" type="submit" data-bs-toggle="modal" data-bs-target="#exampleModal">Check my certificate</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+
+<div class="modal shadow fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Loading</h5>
+      </div>
+      <div class="modal-body">
+        <img src="{{ url_for('static', filename='illustrations/loading_final.gif') }}" class="w-100"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" style="background-color: #6f42c1; border:none;" class="btn btn-primary disabled">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <footer class="my-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021–2021 Utopian Union</p>
+  </footer>
+</div>
+
+
+	<script src="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js')}}"></script>
+	</body>
+</html>
