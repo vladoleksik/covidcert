@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+    <title>Home | Utopia certificate generation portal</title>
+
+    
+  </head>
+  <body>
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand"><img class="rounded"  height="40" src="{{ url_for('static', filename='images/UU.png') }}"> | Ministry of Certificate Signing</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse align-items-right" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('gen_opt') }}">Start</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('how_it_works') }}">How it works</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container col-xxl-8 px-4 mx-auto py-5">
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{ url_for('static', filename='illustrations/QR code_Monochromatic.png') }}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Borderless, privacy-enabled health certificates.</h1>
+        <p class="lead">Here, you can generate a customized QR Code-enabled Health Certificate that only we can sign, but anyone can verify. With just a tap.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <a href="{{ url_for('gen_opt') }}"><button type="button" class="btn btn-primary btn-lg px-4 me-md-2" style="background-color: #6f42c1; border:none;">Generate your certificate<img height="24" src="{{ url_for('static', filename='images/outline_arrow_forward_white_24dp.png') }}"/></button></a>
+	
+         <a href="{{ url_for('how_it_works') }}"><button type="button" class="btn btn-outline-secondary btn-lg px-4">How it works</button></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<div class="container px-4 py-5" id="featured-3">
+    <h2 class="pb-2 border-bottom">Discover</h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon">
+          <img src="{{ url_for('static', filename='illustrations/Finger print_Monochromatic.png') }}" class="d-block w-75 mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+        </div>
+        <h2>Personalized</h2>
+        <p>The certificate holds all your relevant information, under a standard that is dynamic and can easily be adapted to any use case.</p>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon">
+          <img src="{{ url_for('static', filename='illustrations/Security_Monochromatic.png') }}" class="d-block w-75 mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+        </div>
+        <h2>Secure</h2>
+        <p>The certificate is signed by us using an asymmetric key digital signature algorithm - anybody can verify, bt only we can sign it.</p>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon">
+          <img src="{{ url_for('static', filename='illustrations/Team work_Monochromatic.png') }}" class="d-block w-75 mx-lg-auto img-fluid" alt="Bootstrap Themes" loading="lazy">
+        </div>
+        <h2>Privacy-compliant</h2>
+        <p><i>You</i> hold the only copy of your data - right in your certificate! No databases, chips, and GPS tracking on our side :)</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="mb-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021–2021 Utopian Union</p>
+  </footer>
+
+
+
+    <script src="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js')}}"></script>
+
+<!--<style>
+.btn-primary:hover{
+   background-color: #481e96;
+}
+    </style>-->
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+	<title>Generate certificate | Utopia certificate generation portal</title>
+
+	</head>
+   <body style="background-image: url({{ url_for('static', filename='images/bg_purple.png') }}); padding: 5px; background-position: left; background-attachment: fixed;">
+
+     <div class="container shadow rounded-top bg-body mt-4">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white">
+       <div class="container-fluid">
+        <a class="navbar-brand"><img class="rounded"  height="40" src="{{ url_for('static', filename='images/UU.png') }}"> | Ministry of Certificate Signing</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse align-items-right" id="navbarNav">
+         <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="{{ url_for('how_it_works') }}">How it works</a>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </nav>
+  </div>
+
+
+	<div class="container rounded-bottom shadow bg-body">
+		<main>
+    <div class="py-5 text-center">
+      <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='illustrations/Finger print_Monochromatic.png') }}" alt="" width="144">
+      <h2 class="mx-5">Generate Utopia Health certificate</h2>
+      <p class="lead my-0">Please choose your situation to generate your health certificate.</p>
+      <p class="lead my-0">Please make sure your data is correct, because we don't check and will sign any certificate for you :)</p>
+    </div>
+
+    <div class="row justify-content-md-center">
+      
+      <div class="col-md-7 col-lg-8" >
+        <h4 class="mb-3">Immunity cases</h4>
+          <div class="row g-3 mb-5">
+            <div class="col-sm-4">
+             <a href="{{ url_for('gen_vac') }}"><button style="background-color: #6f42c1; border:none;" class="shadow-sm w-100 btn btn-primary btn-lg" type="button"><img class="d-block w-75 mx-auto mb-4" style="max-width: 120px;" src="{{ url_for('static', filename='illustrations/round_vaccines_white_48dp.png') }}" alt="" width="144">Vaccine</button></a>
+            </div>
+
+            <div class="col-sm-4">
+              <a href="{{ url_for('gen_test') }}"><button style="background-color: #6f42c1; border:none;" class="shadow-sm w-100 btn btn-primary btn-lg" type="button"><img class="d-block w-75 mx-auto mb-4" style="max-width: 120px;" src="{{ url_for('static', filename='illustrations/round_fact_check_white_48dp.png') }}" alt="" width="144">Test</button></a>
+            </div>
+
+            <div class="col-sm-4">
+	     <a href="{{ url_for('gen_rec') }}"><button style="background-color: #6f42c1; border:none;" class="shadow-sm w-100 btn btn-primary btn-lg" type="button"><img class="d-block w-75 mx-auto mb-4" style="max-width: 120px;" src="{{ url_for('static', filename='illustrations/round_coronavirus_white_48dp.png') }}" alt="" width="144">Recovery</button></a>
+            </div>
+          </div>      
+      </div>
+    </div>
+</div>
+
+
+  <footer class="my-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021–2021 Utopian Union</p>
+  </footer>
+</div>
+
+
+	<script src="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js')}}"></script>
+	</body>
+</html>

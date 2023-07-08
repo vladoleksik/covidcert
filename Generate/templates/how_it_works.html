@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <title>How it works | Utopia certificate generation portal</title>
+
+    
+  </head>
+  <body>
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+  <div class="container-fluid">
+    <a class="navbar-brand"><img class="rounded"  height="40" src="{{ url_for('static', filename='images/UU.png') }}"> | Ministry of Certificate Signing</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse align-items-right" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('gen_opt') }}">Start</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="#">How it works</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="px-4 py-5 my-5 text-center">
+    <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='illustrations/Data Process_Monochromatic.png') }}" alt="" height="120">
+    <h1 class="display-5 fw-bold">Take a look inside</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">Here, you can find more about your - and everyone else's - cerificate. On this page, we briefly present how it is designed, structured, signed and verified - while doing away with centralised databases.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <a href="{{ url_for('gen_opt') }}"><button type="button" class="btn btn-primary btn-lg px-4 me-md-2" style="background-color: #6f42c1; border:none;">Generate your certificate<img height="24" src="{{ url_for('static', filename='images/outline_arrow_forward_white_24dp.png') }}"/></button></a>
+        <a href="{{ url_for('home') }}"><button type="button" class="btn btn-outline-secondary btn-lg px-4">Home</button></a>
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="container">
+<div id="design">
+<h1>The design of the certificate</h1><hr/>
+<div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+        Why not store data in databases?
+      </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body"><p>The main idea of this certificate is to avoid using centralised databases. If every vaccinated person has their details stored in a large table (which is primarily used to generate and verify "certificates"), not only would you have to give the read credentials (i.e. username and password or API key) to everyone at every border, event entry, restaurant, school etc., but you would also have to give the full read-write permissions to every Ministry, Hospital test point in order to be able to generate all the certificates <b>with a decent level of flexibility</b>. This way, it is only a matter of time until some of the credentials get leaked out and, once unauthorised access to the database is granted, the damage is hard to even estimate. What is more, you would need Internet access to be able to check the validity of any claim. This is the pre-digital equivalent of having a centralised table of everyone in existence and their current status. Insecure, sluggish, inconvenient.</p></div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        The decentralised design
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body"><p>The main idea behind this certificate system is the equivalent of <i>hand-signed diplomas, passports and other documents</i>. There is no need to actually compare any certificate to a register entry, just to see if the one who signed it is someone you trust (a competent authority). More explicitly, it uses a set of national databases only as a backup, while the verification procedure is done on-site, by perforing a set of mathematical checks. This way, we determine if the certificate corresponds to a set of rules that can only be followed by the respective issuer - no forgeries!</p></div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Overall description
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body"><p>When you enter your data on a certificate generation site (of your national Ministry of Health or equivalent authority), the institution can check if your data is correct, then write a short note: "I, the <code>Utopian</code> Ministry of Health, state that this person is <code>...</code> and therefore ok. This note is valid from <code>today</code> for <code>one year</code>." Then, it performs a mathematical function on the entire message (every piece of text is, after all, a number) and attaches the result to the message. This function depends on a secret number only known by the respective institution and, therefore, can only be applied to the original message by that institution. Also, the inverse function is made public and can be used to un-jumble any message and verifiy its provenience.</p><p>The verifying side uses that inverse function, who it knows it comes from your issuer, applying it to the attached signature and, if it un-jumbles to the exact same message, it certifies the authenticity of the message.</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div id="signature">
+<h1>How a message is <i>actually</i> signed</h1><hr/>
+<div class="accordion accordion-flush" id="accordionFlushExample2">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne2">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne2" aria-expanded="false" aria-controls="flush-collapseOne2">
+        How asymmetric cryptography works
+      </button>
+    </h2>
+    <div id="flush-collapseOne2" class="accordion-collapse collapse" aria-labelledby="flush-headingOne2" data-bs-parent="#accordionFlushExample2">
+      <div class="accordion-body"><p>The only mathematically possible way to provide a decentralised certification system is to come up with an asymmetric function system. In a nutshell, a pair of two functions: <code>jumble(x)</code> and <code>unjumble(x)</code>. Essentially, it is imperative that <code>x is equal to unjumble(jumble(x))</code>. Also, the <code>jumble</code> function has to be secret, thus incredibly hard to determine, even if the unjumble function is known and public. Even more, it is neessary to find a method to, quickly and reliably, find a unique set of such functions whenever necessary. One of the first known examples is called RSA (Rivest-Shamir-Adleman) and is in use even today in most cryptographic systems in the world.</p></div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo2">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo2" aria-expanded="false" aria-controls="flush-collapseTwo2">
+        The set of functions
+      </button>
+    </h2>
+    <div id="flush-collapseTwo2" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo2" data-bs-parent="#accordionFlushExample2">
+      <div class="accordion-body"><p>The key is, surprisingly, in prime numbers! Take two prime numbers, p and q (for example, 3 and 17, but the numbers used in reality are about 1024 digits long each!) and multiply them: <code>n=p*q</code>. After that, take a standard number <code>e</code> (usually 65537, but now, 7). Now we want to find <code>d</code>, the <code>number with (x<sup>e*d</sup>) mod n = x, for any x</code>, and equal to the <code>modular inverse of e mod phi(n)</code>. The latter is a mathematical function which, for the case of RSA, evaluates to <code>phi(n)=(p-1)*(q-1)</code>. <code>d</code> can be calculated by taking any k for which <code>(1+k*(phi(n))/e is an integer</code>. That integer is d. For our example, n=51, phi(n)=2*16=32. Thus we find k=5, for which d=23.</p><p>So, jumble is: <code>jumble(x)=x<sup>d</sup> mod n</code> or x<sup>23</sup> mod 51</p><p>And unjumble is: <code>unjumble(x)=x<sup>e</sup> mod n</code> or x<sup>7</sup> mod 51</p><p>One can observe that, as it is very difficult to compute p and q knowing only n, it is unfeasible to find the signing function by just knowing the verifying function.</p></div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree2">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree2" aria-expanded="false" aria-controls="flush-collapseThree2">
+        How a message is signed
+      </button>
+    </h2>
+    <div id="flush-collapseThree2" class="accordion-collapse collapse" aria-labelledby="flush-headingThree2" data-bs-parent="#accordionFlushExample2">
+      <div class="accordion-body"><p>Although RSA is not used in this certificate, another similar algorithm is used: the Elliptic Curve Digital Signature Algorithm (ECDSA). The main idea remains the same: take your message, compute its hash (a shorter, obscure string that is easier to encrypt, but (ideally) uniquely identifies a message). Now, pass the hash through the jumbling function and attach the result to your message. Make sure your unjumbling algorithm is known by everyone and you can publish your message that can now be undeniably linked to you and just you.</p></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<div id="structure">
+<h1>The convenient package for your message</h1><hr/>
+<div class="accordion accordion-flush" id="accordionFlushExample3">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingOne3">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne3" aria-expanded="false" aria-controls="flush-collapseOne3">
+        JSON
+      </button>
+    </h2>
+    <div id="flush-collapseOne3" class="accordion-collapse collapse" aria-labelledby="flush-headingOne3" data-bs-parent="#accordionFlushExample3">
+      <div class="accordion-body"><p>Your data is represented in a certificate like this:</p>
+<p><pre>
+{
+   1:"UU",
+   4:1697825681,
+   6:1631297681,
+   -260:{
+      1:{
+         "v":[
+            {
+               "ci":"URN:UVCI:01:UU:NDBGDIBDASBX4QSFK0KGXF3TPT4D6Y#D",
+               "co":"UU",
+               "dn":4,
+               "sd":7,
+               "dt":"2023-07-11",
+               "is":"UU Mystery of Certificate Signing",
+               "ma":"ORG-100030215",
+               "mp":"EU/1/20/1528",
+               "vp":"1119349007",
+               "tg":"840539006"
+            }
+         ],
+         "dob":"2002-10-12",
+         "nam":{
+            "fn":"GEORGESCU",
+            "gn":"ION&#45;TEODOR",
+            "fnt":"GEORGESCU",
+            "gnt":"ION&lt;TEODOR"
+         },
+         "ver":"1.3.0"
+      }
+   }
+}
+</pre></p>
+<p>This format ecompasses information about yourself ("dob", "nam"), about your health status ("v" - vaccinated, "t" - tested, "r" - recovered) (all these at key -260), and about the issuer (key 1), sign and expiration dates (keys 6 and 4, in seconds since 1/1/1970 00:00).</p></div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo3">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo3" aria-expanded="false" aria-controls="flush-collapseTwo3">
+        The key
+      </button>
+    </h2>
+    <div id="flush-collapseTwo3" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo3" data-bs-parent="#accordionFlushExample3">
+      <div class="accordion-body"><p><pre>&#48;&#105;&#49;&#72;&#68;&#89;&#84;&#77;&#112;&#107;&#107;&equals;</pre>
+<p>Appended to the message, there is a header including informaton about the algorithm that was used, a Key ID (seen above) to help retrieve the public key faster form the trusted list, without trying to use every key, and, obviously, the signature.</p>
+
+<pre>&lt;&#67;&#79;&#83;&#69;&lowbar;&#75;&#101;&#121;&lpar;&#69;&#67;&#50;&#75;&#101;&#121;&rpar;&colon;&#32;&lcub;&apos;&#69;&#67;&#50;&#75;&#112;&#89;&apos;&colon;&#32;&quot;&#98;&apos;&#83;&sol;&bsol;&bsol;&#120;&#56;&#49;&bsol;&bsol;&#120;&#97;&#53;&#103;&apos;&#32;&period;&period;&period;&#32;&lpar;&#51;&#50;&#32;&#66;&rpar;&quot;&comma;&#32;&apos;&#69;&#67;&#50;&#75;&#112;&#88;&apos;&colon;&#32;&quot;&#98;&apos;&#49;&num;&#111;&bsol;&bsol;&#120;&#48;&#50;&bsol;&bsol;&#120;&#102;&#97;&apos;&#32;&period;&period;&period;&#32;&lpar;&#51;&#50;&#32;&#66;&rpar;&quot;&comma;&#32;&apos;&#69;&#67;&#50;&#75;&#112;&#67;&#117;&#114;&#118;&#101;&apos;&colon;&#32;&apos;&#80;&#50;&#53;&#54;&apos;&comma;&#32;
+&apos;&#75;&#112;&#75;&#116;&#121;&apos;&colon;&#32;&apos;&#75;&#116;&#121;&#69;&#67;&#50;&apos;&comma;&#32;&apos;&#75;&#112;&#65;&#108;&#103;&apos;&colon;&#32;&apos;&#69;&#115;&#50;&#53;&#54;&apos;&rcub;&gt;</pre></p>
+<p>Once the public key is found (presented above), it can be used to try to verify the signature. The key consists of two values, X and Y (EC2KpX and EC2KpY), and other vaues that describe the algorithm that was used.</p></div>
+    </div>
+  </div>
+
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree3">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree3" aria-expanded="false" aria-controls="flush-collapseThree3">
+        Signed message
+      </button>
+    </h2>
+    <div id="flush-collapseThree3" class="accordion-collapse collapse" aria-labelledby="flush-headingThree3" data-bs-parent="#accordionFlushExample3">
+      <div class="accordion-body"><p>Once everything is in place, the entire message looks like this.</p>
+<code>&bsol;&#120;&#100;&#50;&bsol;&#120;&#56;&#52;&#77;&bsol;&#120;&#97;&#50;&bsol;&#120;&#48;&#49;&amp;&bsol;&#120;&#48;&#52;&#72;&bsol;&#120;&#100;&#50;&#45;&#71;&bsol;&#114;&bsol;&#120;&#56;&#52;&bsol;&#120;&#99;&#99;&bsol;&#120;&#97;&#54;&#73;&bsol;&#120;&#97;&#48;&#89;&bsol;&#120;&#48;&#49;&num;&bsol;&#120;&#97;&#52;&bsol;&#120;&#48;&#49;&#98;&#85;&#85;&bsol;&#120;&#48;&#52;&bsol;&#120;&#49;&#97;&#101;&#55;&bsol;&#120;&#101;&#48;&#85;&bsol;&#120;&#48;&#54;&bsol;&#120;&#49;&#97;&#97;&commat;&bsol;&#120;&#98;&#100;&#85;&#57;&bsol;&#120;&#48;&#49;&bsol;&#120;&#48;&#51;&bsol;&#120;&#97;&#49;&bsol;&#120;&#48;&#49;&bsol;&#120;&#97;&#52;&#97;&#118;&bsol;&#120;&#56;&#49;&bsol;&#120;&#97;&#97;&#98;&#99;&#105;&#120;&sol;&#85;&#82;&#78;&colon;&#85;&#86;&#67;&#73;&colon;&#48;&#49;&colon;&#85;&#85;&colon;&#65;&#49;&#84;&#74;&#79;&#51;&#80;&#70;&#73;&#89;&#79;&#48;&#53;&#48;&#72;&#65;&#81;&#78;&#90;&#88;&#55;&#70;&#85;&#70;&#70;&#70;&#86;&#83;&#85;&#88;&num;&#70;&#98;&#99;&#111;&#98;&#85;&#85;&#98;&#100;&#110;&bsol;&#120;&#48;&#52;&#98;&#115;&#100;&bsol;&#120;&#48;&#55;&#98;&#100;&#116;&#106;&#50;&#48;&#50;&#51;&#45;&#48;&#55;&#45;&#49;&#49;&#98;&#105;&#115;&#120;&excl;&#85;&#85;&#32;&#77;&#121;&#115;&#116;&#101;&#114;&#121;&#32;&#111;&#102;&#32;&#67;&#101;&#114;&#116;&#105;&#102;&#105;&#99;&#97;&#116;&#101;&#32;&#83;&#105;&#103;&#110;&#105;&#110;&#103;&#98;&#109;&#97;&#109;&#79;&#82;&#71;&#45;&#49;&#48;&#48;&#48;&#51;&#48;&#50;&#49;&#53;&#98;&#109;&#112;&#108;&#69;&#85;&sol;&#49;&sol;&#50;&#48;&sol;&#49;&#53;&#50;&#56;&#98;&#118;&#112;&#106;&#49;&#49;&#49;&#57;&#51;&#52;&#57;&#48;&#48;&#55;&#98;&#116;&#103;&#105;&#56;&#52;&#48;&#53;&#51;&#57;&#48;&#48;&#54;&#99;&#100;&#111;&#98;&#106;&#50;&#48;&#48;&#50;&#45;&#49;&#48;&#45;&#49;&#50;&#99;&#110;&#97;&#109;&bsol;&#120;&#97;&#52;&#98;&#102;&#110;&#105;&#71;&#69;&#79;&#82;&#71;&#69;&#83;&#67;&#85;&#98;&#103;&#110;&#106;&#73;&#79;&#78;&#45;&#84;&#69;&#79;&#68;&#79;&#82;&#99;&#102;&#110;&#116;&#105;&#71;&#69;&#79;&#82;&#71;&#69;&#83;&#67;&#85;&#99;&#103;&#110;&#116;&#106;&#73;&#79;&#78;&lt;&#84;&#69;&#79;&#68;&#79;&#82;&#99;&#118;&#101;&#114;&#101;&#49;&period;&#51;&period;&#48;&#88;&commat;&bsol;&#120;&#101;&#54;&bsol;&#120;&#102;&#53;&bsol;&#120;&#102;&#57;&#73;&#100;&bsol;&#120;&#102;&#98;&bsol;&#120;&#98;&#48;&bsol;&#120;&#57;&#100;&#50;&#71;&bsol;&#120;&#56;&#51;&bsol;&#120;&#49;&#51;&bsol;&#120;&#57;&#54;&#122;&bsol;&#120;&#101;&#48;&#103;&period;&#57;&bsol;&#120;&#101;&#49;&bsol;&#120;&#97;&#100;&bsol;&#120;&#48;&#56;&bsol;&#120;&#56;&#50;&bsol;&#120;&#57;&#98;&bsol;&#120;&#56;&#50;&bsol;&#120;&#57;&#98;&#86;&bsol;&#120;&#100;&#101;&#126;&bsol;&#120;&#98;&#55;&bsol;&#120;&#56;&#48;&#116;&bsol;&#120;&#56;&#49;&bsol;&#120;&#49;&#102;&#68;&semi;&bsol;&#120;&#100;&#50;&bsol;&#120;&#48;&#55;&bsol;&#120;&#100;&#101;&bsol;&#120;&#101;&#51;&bsol;&#120;&#99;&#50;&bsol;&#120;&#49;&#101;&rcub;&quest;&bsol;&#120;&#100;&#97;&bsol;&#120;&#49;&#57;&bsol;&#120;&#49;&#100;&grave;&bsol;&#120;&#100;&#52;&#88;&bsol;&#120;&#101;&#57;&bsol;&#120;&#98;&#98;&lowbar;&#68;&bsol;&#120;&#56;&#53;&bsol;&#120;&#48;&#102;&bsol;&#120;&#100;&#102;&#50;&bsol;&#120;&#97;&#51;&#55;&#87;&#115;&#74;&#85;&bsol;&#120;&#56;&#52;</code>
+<p>It can be seen that some parts are readable, although there are many non-printable characters (depicted as &bsol;xAB).</p></div>
+    </div>
+  </div>
+
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-heading43">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse43" aria-expanded="false" aria-controls="flush-collapse43">
+        ZIP archiving
+      </button>
+    </h2>
+    <div id="flush-collapse43" class="accordion-collapse collapse" aria-labelledby="flush-heading43" data-bs-parent="#accordionFlushExample3">
+      <div class="accordion-body"><p>Everything is archived in .zip format. The readability is lost, but this procedure insures a relatively similar size for all certificates.</p>
+<code>&#120;&bsol;&#120;&#100;&#97;&bsol;&#120;&#98;&#98;&bsol;&#120;&#100;&#52;&bsol;&#120;&#101;&#50;&bsol;&#120;&#98;&#98;&bsol;&#120;&#56;&#56;&#81;&bsol;&#120;&#56;&#100;&bsol;&#120;&#99;&#53;&bsol;&#120;&#101;&#51;&bsol;&#120;&#57;&#50;&bsol;&#120;&#97;&#101;&semi;&#111;&bsol;&#120;&#99;&#98;&bsol;&#120;&#57;&#57;&#101;&bsol;&#120;&#57;&#101;&bsol;&#120;&#48;&#98;&quot;&bsol;&#120;&#49;&#57;&bsol;&#120;&#57;&#53;&bsol;&#120;&#57;&#55;&#48;&amp;&bsol;&#120;&#56;&#53;&bsol;&#120;&#56;&#54;&bsol;&#120;&#98;&#50;&#72;&bsol;&#120;&#97;&#53;&bsol;&#120;&#57;&#97;&quest;&bsol;&#120;&#98;&#99;&bsol;&#120;&#99;&#53;&amp;&bsol;&#120;&#57;&#53;&bsol;&#120;&#101;&#56;&bsol;&#120;&#98;&#48;&bsol;&#120;&#101;&#102;&bsol;&#120;&#57;&#54;&percnt;&num;&bsol;&#120;&#102;&#51;&#66;&bsol;&#120;&#99;&#54;&percnt;&bsol;&#120;&#56;&#57;&#101;&bsol;&#120;&#56;&#100;&bsol;&#120;&#97;&#98;&bsol;&#120;&#57;&#50;&bsol;&#120;&#57;&#50;&#51;&plus;&bsol;&#120;&#102;&#52;&#67;&bsol;&#120;&#56;&#51;&bsol;&#120;&#102;&#99;&bsol;&#120;&#97;&#99;&#66;&bsol;&#120;&#99;&#51;&bsol;&#120;&#57;&#99;&equals;&bsol;&#120;&#97;&#100;&bsol;&#120;&#48;&#99;&bsol;&#120;&#48;&#99;&bsol;&#120;&#97;&#100;&#66;&#67;&bsol;&#120;&#97;&#100;&verbar;&bsol;&#120;&#99;&#50;&bsol;&#120;&#100;&#99;&bsol;&#120;&#100;&#100;&bsol;&#114;&#66;&#67;&comma;&bsol;&#120;&#57;&#99;&lt;&bsol;&#120;&#99;&#51;&#76;&equals;&bsol;&#120;&#102;&#99;&rsqb;&bsol;&#120;&#97;&#51;&comma;&bsol;&#120;&#56;&#50;&bsol;&#120;&#102;&#100;&bsol;&#120;&#99;&#51;&bsol;&#120;&#100;&#99;&bsol;&#120;&#99;&#100;&bsol;&#120;&#56;&#50;&bsol;&bsol;&bsol;&#120;&#102;&#99;&#77;&bsol;&#120;&#49;&#99;&bsol;&#120;&#49;&#100;&bsol;&#120;&#57;&#100;&bsol;&#120;&#102;&#100;&bsol;&#120;&#57;&#52;&#77;&bsol;&#120;&#57;&#50;&bsol;&#120;&#57;&#50;&bsol;&#120;&#102;&#51;&bsol;&#120;&#56;&#49;&bsol;&#120;&#101;&#54;&percnt;&bsol;&#120;&#97;&#53;&bsol;&#120;&#101;&#52;&bsol;&#120;&#98;&#49;&dollar;&bsol;&#120;&#49;&#53;&bsol;&#120;&#97;&#55;&bsol;&#120;&#98;&#48;&bsol;&apos;&bsol;&#120;&#97;&#53;&bsol;&#120;&#57;&#52;&#100;&bsol;&#120;&#49;&#57;&bsol;&#120;&#49;&#57;&bsol;&#120;&#49;&#56;&bsol;&#120;&#49;&#57;&bsol;&#120;&#101;&#98;&bsol;&#120;&#49;&#97;&bsol;&#120;&#57;&#56;&bsol;&#120;&#101;&#98;&bsol;&#120;&#49;&#97;&bsol;&#120;&#49;&#97;&amp;&#101;&bsol;&#120;&#49;&#54;&#87;&lpar;&bsol;&#120;&#56;&#54;&bsol;&#120;&#56;&#54;&ast;&bsol;&#120;&#102;&#56;&#86;&bsol;&#120;&#49;&#54;&bsol;&#120;&#57;&#55;&bsol;&#120;&#97;&#52;&bsol;&#120;&#49;&#54;&#85;&ast;&bsol;&#120;&#101;&#52;&bsol;&#120;&#97;&#55;&rpar;&#56;&bsol;&#120;&#97;&#55;&bsol;&#120;&#49;&#54;&bsol;&#120;&#57;&#53;&#100;&bsol;&#120;&#97;&#54;&#101;&amp;&bsol;&apos;&bsol;&#120;&#57;&#54;&bsol;&#120;&#97;&#52;&ast;&bsol;&#120;&#48;&#52;&#103;&bsol;&#120;&#97;&#54;&bsol;&#120;&#101;&#55;&#101;&bsol;&#120;&#101;&#54;&bsol;&#120;&#97;&#53;&bsol;&apos;&bsol;&#120;&#101;&#53;&amp;&bsol;&#120;&#101;&#54;&bsol;&#120;&#102;&#97;&bsol;&#120;&#48;&#55;&bsol;&#120;&#98;&#57;&bsol;&#120;&#101;&#98;&bsol;&#120;&#49;&#97;&bsol;&#120;&#49;&#97;&bsol;&#120;&#49;&#56;&bsol;&#120;&#49;&#56;&bsol;&#120;&#49;&#56;&bsol;&#120;&#49;&#98;&bsol;&#120;&#49;&#56;&bsol;&#120;&#49;&#57;&bsol;&#120;&#57;&#97;&amp;&bsol;&#120;&#101;&#53;&bsol;&#120;&#49;&#54;&bsol;&#120;&#101;&#52;&bsol;&#120;&#98;&#56;&bsol;&#120;&#56;&#54;&bsol;&#120;&#101;&#97;&bsol;&#120;&#49;&#98;&bsol;&#120;&#101;&#97;&bsol;&#120;&#49;&#98;&bsol;&#120;&#49;&#57;&bsol;&#120;&#101;&#56;&bsol;&#120;&#49;&#98;&bsol;&#120;&#57;&#97;&bsol;&#120;&#49;&#97;&#89;&dollar;&bsol;&#120;&#57;&#53;&bsol;&#120;&#49;&#53;&#100;&bsol;&#120;&#49;&#57;&bsol;&#120;&#49;&#97;&bsol;&#120;&#49;&#97;&#90;&bsol;&#120;&#49;&#97;&bsol;&#120;&#57;&#98;&#88;&bsol;&#120;&#49;&#97;&bsol;&#120;&#49;&#56;&bsol;&#120;&#57;&#56;&bsol;&apos;&bsol;&#120;&#57;&#53;&bsol;&#120;&#97;&#52;&#103;&#90;&bsol;&#120;&#57;&#56;&bsol;&#120;&#49;&#56;&bsol;&#120;&#57;&#56;&bsol;&#120;&#49;&#97;&bsol;&#120;&#48;&#51;&#57;&#102;&bsol;&#120;&#99;&#57;&rpar;&bsol;&#120;&#102;&#57;&#73;&commat;&bsol;&#120;&#48;&#98;&bsol;&#114;&bsol;&#120;&#56;&#99;&bsol;&#120;&#56;&#48;&bsol;&#120;&#98;&#97;&#117;&bsol;&#114;&bsol;&#120;&#56;&#100;&bsol;&#120;&#57;&#50;&bsol;&#120;&#102;&#51;&bsol;&#120;&#49;&#50;&#115;&bsol;&#120;&#57;&#55;&dollar;&bsol;&#120;&#97;&#53;&bsol;&#120;&#101;&#53;&#101;&bsol;&#120;&#98;&#97;&bsol;&#120;&#98;&#98;&bsol;&#120;&#48;&#50;&#77;&#116;&bsol;&#114;&#118;&bsol;&#120;&#48;&#101;&#77;&#74;&bsol;&#120;&#99;&#102;&bsol;&#120;&#99;&#98;&bsol;&#120;&#102;&#50;&bsol;&#120;&#102;&#52;&bsol;&#120;&#102;&#55;&bsol;&#120;&#100;&#51;&bsol;&#114;&#113;&bsol;&#120;&#102;&#53;&#119;&bsol;&#120;&#102;&#49;&bsol;&#120;&#48;&#102;&#74;&#78;&bsol;&#120;&#99;&#98;&plus;&#65;&bsol;&#120;&#99;&#56;&percnt;&bsol;&#120;&#97;&#55;&bsol;&#120;&#101;&#55;&bsol;&#120;&#57;&#53;&bsol;&#120;&#56;&#48;&dollar;&#109;&bsol;&#120;&#97;&#48;&bsol;&#120;&#57;&#50;&#101;&bsol;&#120;&#97;&#57;&#69;&bsol;&#120;&#97;&#57;&bsol;&#120;&#56;&#54;&#122;&bsol;&#120;&#99;&#54;&#122;&bsol;&#120;&#48;&#54;&bsol;&#120;&#49;&#49;&bsol;&#120;&#48;&#101;&semi;&bsol;&#120;&#56;&#101;&#52;&bsol;&#120;&#56;&#57;&bsol;&#120;&#48;&#54;&bsol;&#120;&#48;&#98;&bsol;&#120;&#97;&#55;&#113;&bsol;&#120;&#100;&#57;&#86;&bsol;&#120;&#57;&#100;&#102;&#121;&bsol;&#120;&#102;&#56;&bsol;&#120;&#98;&#50;&bsol;&#120;&#101;&#52;&#72;&bsol;&#120;&#101;&#55;&bsol;&#120;&#57;&#55;&bsol;&#120;&#56;&#53;&bsol;&#120;&#98;&#57;&bsol;&#120;&#98;&#51;&bsol;&#120;&#49;&#57;&bsol;&#120;&#102;&#100;&bsol;&#120;&#99;&#101;&#116;&bsol;&#120;&#49;&#101;&bsol;&#120;&#57;&#54;&bsol;&#120;&#57;&#97;&bsol;&#120;&#98;&#51;&#113;&bsol;&#120;&#102;&#57;&bsol;&#120;&#102;&#97;&bsol;&#120;&#56;&#98;&bsol;&#120;&#98;&#53;&bsol;&#120;&#97;&#53;&bsol;&#120;&#101;&#98;&bsol;&#120;&#100;&#52;&#122;&bsol;&#120;&#98;&#54;&bsol;&#120;&#98;&#57;&bsol;&#120;&#101;&#100;&bsol;&#120;&#57;&#52;&#100;&bsol;&#120;&#100;&#56;&lcub;&bsol;&#120;&#101;&#102;&bsol;&#120;&#102;&#56;&bsol;&#120;&#49;&#101;&bsol;&#120;&#98;&#57;&bsol;&#120;&#102;&#98;&bsol;&#120;&#99;&#98;&bsol;&#120;&#57;&#56;&#53;&bsol;&#120;&#49;&#56;&bsol;&#120;&#49;&#51;&bsol;&#120;&#48;&#51;&bsol;&#120;&#97;&#55;&#78;&gt;&bsol;&#120;&#99;&#48;&#89;&bsol;&#120;&#98;&#100;&bsol;&#120;&#57;&#55;&bsol;&#120;&#97;&#55;&bsol;&#120;&#55;&#102;&bsol;&#120;&#97;&#102;&bsol;&#120;&#48;&#49;&bsol;&#120;&#48;&#48;&#65;&#104;&bsol;&#120;&#56;&#49;&#122;</code></div>
+    </div>
+  </div>
+
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-heading53">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse53" aria-expanded="false" aria-controls="flush-collapse53">
+        Base 45
+      </button>
+    </h2>
+    <div id="flush-collapse53" class="accordion-collapse collapse" aria-labelledby="flush-heading53" data-bs-parent="#accordionFlushExample3">
+      <div class="accordion-body"><p>The whole string is encoded in Base 45 using characters from A-Z, 0-9 and symbols to improve readability."HC1:" (Health Certificate Version 1) is added at the beginning.</p>
+<code>&#72;&#67;&#49;&colon;&#78;&#67;&#70;&#79;&#88;&#78;&percnt;&#84;&#83;&#77;&#65;&#72;&#78;&#45;&#72;&#83;&#89;&#83;&#56;&#49;&#77;&colon;&#53;&#69;&#84;&#72;&#74;&#52;&colon;&#74;&colon;&#68;&#52;&#48;&#45;&#73;&#45;&#51;&#54;&#82;&ast;&#71;&#65;&#79;&#77;&#52;&period;&#75;&sol;&#51;&#56;&period;&#55;&#80;&#32;&period;&#73;&#45;&#71;&#77;&#71;&#53;&#75;&#78;&#79;&#52;&ast;&#74;&#56;&#79;&#88;&#52;&#87;&dollar;&#67;&#50;&#86;&#76;&#87;&#76;&#73;&#50;&#80;&#53;&#51;&#79;&#56;&#74;&period;&#86;&#32;&#74;&#56;&dollar;&#88;&#74;&#75;&ast;&#76;&#53;&#82;&#49;&sol;&#71;&#56;&period;&ast;&#76;&#57;&#84;&#51;&#82;&sol;&#82;&#85;&plus;&#70;&#53;&#88;&#51;&#45;&#88;&#70;&#83;&#48;&#87;&#88;&ast;&#80;&dollar;&#87;&#79;&#50;&#88;&#53;&plus;&percnt;&#86;&#45;&#78;&#56;&#78;&#88;&#72;&#78;&period;&#82;&#57;&#89;&#72;&dollar;&dollar;&#78;&#74;&#79;&#56;&colon;&#80;&#73;&colon;&#73;&#71;&#55;&#89;&#52;&#48;&#45;&#83;&#67;&#80;&#52;&sol;&#56;&#76;&#79;&#48;&#53;&#56;&#89;&#73;&#90;&#55;&#51;&#52;&#50;&#51;&#76;&#87;&#84;&period;&#69;&#74;&#77;&#68;&#51;&#74;&percnt;&#52;&#52;&dollar;&#50;&#79;&#53;&#53;&#66;&sol;&#71;&#89;&#72;&#86;&#78;&percnt;&#50;&#76;&#88;&#75;&#77;&#89;&#65;&#90;&plus;&#83;&#77;&#57;&#53;&#79;&#53;&#76;&ast;&ast;&#73;&#82;&#49;&#76;&#50;&dollar;&#52;&colon;&#49;&#74;&#49;&#69;&#53;&#84;&#52;&#68;&#72;&#66;&#84;&#53;&#55;&#84;&sol;&#49;&#53;&#68;&#45;&#52;&#72;&#82;&#86;&#85;&#77;&#78;&#77;&#68;&#51;&#51;&#50;&#51;&#54;&#50;&#51;&#52;&#50;&#51;&period;&#76;&#74;&#66;&sol;&#83;&#55;&#45;&#83;&#78;&#50;&#72;&#32;&#78;&#51;&#55;&#74;&#51;&#74;&#70;&#84;&#85;&#76;&#74;&#53;&#67;&#66;&#53;&percnt;&#73;&#75;&#84;&#67;&#77;&#68;&#51;&#81;&#72;&#66;&#88;&#83;&#74;&#75;&#68;&#51;&#81;&#65;&#74;&#68;&#45;&#73;&sol;&#50;&#68;&#66;&#65;&#74;&#68;&#65;&#74;&#70;&#73;&#48;&#88;&colon;&#67;&#90;&#68;&#53;&#87;&#66;&#57;&ast;&#72;&#49;&#68;&#89;&#72;&#88;&#80;&#78;&#52;&#87;&#49;&colon;&#80;&#73;&sol;&#69;&#50;&dollar;&#52;&#74;&#89;&sol;&#75;&#87;&percnt;&#67;&ast;&#83;&#78;&#83;&#90;&#57;&#81;&#86;&#49;&#71;&#32;&#49;&#81;&#75;&#57;&#65;&#90;&#80;&#81;&sol;&#85;&#84;&#85;&#81;&#68;&#73;&#69;&#70;&#55;&#70;&colon;&#45;&#49;&#66;&sol;&#57;&#51;&#76;&#53;&#82;&#68;&#80;&#56;&#65;&#76;&#77;&plus;&#73;&#65;&#82;&#52;&#76;&#68;&#75;&#70;&percnt;&#67;&#68;&#32;&#56;&#49;&#48;&#72;&#53;&#52;&#80;&#78;&#89;&#48;&#89;&dollar;&#49;&#80;&sol;&#52;&#55;&#72;&#74;&#85;&#79;&#85;&plus;&#51;&#72;&#77;&#90;&#78;&#66;&#57;&#57;&#82;&#88;&#74;&#89;&#52;&#66;&colon;&#79;&#72;&#83;&#48;&#70;&#69;&#68;&#87;&#73;&#53;&#75;&#79;&#88;&#70;&#80;&#85;&#82;&#84;&#78;&#76;&#86;&#77;&#68;&period;&#68;&#83;&#66;&#80;&#68;&#77;&period;&#82;&percnt;&#79;&#54;&#72;&#84;&#79;&#55;&#89;&#76;&#81;&#45;&#79;&#74;&#51;&#65;&colon;&#74;&#72;&#90;&#70;&#52;&#84;&#84;&#77;&colon;&#71;&#56;&#78;&#52;&#65;&#80;&#90;&#70;&#74;&#88;&#49;&#86;&#89;&#84;&#49;&#70;&#70;&#82;&#53;&#48;&ast;&#55;&#76;&#81;&#53;</code>
+</div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-heading63">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse63" aria-expanded="false" aria-controls="flush-collapse63">
+        QR-Code
+      </button>
+    </h2>
+    <div id="flush-collapse63" class="accordion-collapse collapse" aria-labelledby="flush-heading63" data-bs-parent="#accordionFlushExample3">
+      <div class="accordion-body"><p>The whole string is then packed into a QR-Code so you don't have to "spell" your certificate to the person checking it.</p>
+<img class="w-25" src="{{ url_for('static', filename='images/Test_self.png') }}"/></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+</div>
+
+  <footer class="mb-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2021–2021 Utopian Union</p>
+  </footer>
+
+
+
+        <script src="{{ url_for('static', filename='bootstrap-5.1.1-dist/bootstrap-5.1.1-dist/js/bootstrap.bundle.min.js')}}"></script>
+
+<!--<style>
+.btn-primary:hover{
+   background-color: #481e96;
+}
+    </style>-->
+  </body>
+</html>
