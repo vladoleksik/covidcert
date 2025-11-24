@@ -11,7 +11,7 @@ charset-normalizer==2.0.4
 click==8.0.1
 colorama==0.4.4
 cose==0.9.dev8
-cryptography==3.4.8
+cryptography==44.0.1
 cryptojwt==1.5.2
 cssselect2==0.4.1
 cycler==0.10.0
