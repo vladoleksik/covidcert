@@ -46,7 +46,7 @@ scipy==1.6.3
 six==1.16.0
 tinycss2==1.1.0
 typing-extensions==3.10.0.2
-urllib3==1.26.6
+urllib3==2.5.0
 webencodings==0.5.1
 Werkzeug==2.0.1
 WTForms==2.3.3
